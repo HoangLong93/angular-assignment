@@ -15,6 +15,10 @@
   function ContactViewController($state) {
     var ctrl = this;
 
+    ctrl.cards = function () {
+      $state.go('app.cards');
+    };
+
     ctrl.back = function () {
       $state.go('app.contacts');
     };

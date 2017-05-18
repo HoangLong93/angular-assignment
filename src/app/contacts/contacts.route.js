@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -8,6 +8,24 @@
   /** @ngInject */
   function contactsRouterConfig($stateProvider) {
     $stateProvider
+
+      .state('app.cards', {
+        url: 'cards',
+        views: {
+          main: {
+            template: '<cards contacts="contacts"></cards>',
+            controller: function ($scope, contacts) {
+              $scope.contacts = contacts;
+            }
+          }
+        },
+        resolve: {
+          contactsApi: 'contactsApi',
+          contacts: function (contactsApi) {
+            return contactsApi.query().$promise;
+          }
+        }
+      })
 
       .state('app.contacts', {
         url: 'contacts',
@@ -21,7 +39,7 @@
         },
         resolve: {
           contactsApi: 'contactsApi',
-          contacts: function(contactsApi) {
+          contacts: function (contactsApi) {
             return contactsApi.query().$promise;
           }
         }
@@ -39,7 +57,7 @@
         },
         resolve: {
           /** @ngInject */
-          contact: function($stateParams, contactsApi) {
+          contact: function ($stateParams, contactsApi) {
             return contactsApi.get({ id: $stateParams.id }).$promise;
           }
         }
@@ -56,7 +74,7 @@
           }
         },
         resolve: {
-          contact: function() {
+          contact: function () {
             return { id: null, isActive: true }
           }
         }
@@ -74,7 +92,7 @@
         },
         resolve: {
           /** @ngInject */
-          contact: function($stateParams, contactsApi) {
+          contact: function ($stateParams, contactsApi) {
             return contactsApi.get({ id: $stateParams.id }).$promise;
           }
         }

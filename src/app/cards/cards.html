@@ -1,0 +1,60 @@
+<!--Add new Contact-->
+<h2>Contacts
+    <button class="btn btn-primary pull-right" ng-click="$ctrl.create()">Add contact</button>
+</h2>
+
+<!--Search fields-->
+<div class="searchField">
+    <label>FirstName: <input ng-model="search.firstName"></label>
+    <label>SurName: <input ng-model="search.surName"></label>
+    <label>Mail: <input ng-model="search.email"></label>
+    <label>Cell: <input ng-model="search.phone"></label>
+    <label>Tags: <input ng-model="search.tags"></label>
+    <label>Company: <input ng-model="search.company"></label>
+</div>
+
+<!--Cards-->
+<div class="row card-container">
+    <div class="card" ng-repeat="user in $ctrl.contacts | filter:search | filter:{isActive: 'true'}">
+        <div class="flipper">
+            <div class="front">
+                <a href="" ui-sref="app.contacts.view({ id: user.id })">
+                    <h1>{{user.firstName || '-' }} {{user.surName || '-' }}</h1>
+                </a>
+                <div class="row">
+                    <div class="card-detail">
+                        <!--<label class="control-label">Company:</label>-->
+                        <p class="form-control-static company">{{ user.company | uppercase }}</p>
+                    </div>
+                    <div class="card-detail">
+                        <!--<label class="control-label">Mail:</label>-->
+                        <p class="form-control-static">{{ user.email || '-' }}</p>
+                    </div>
+                    <div class="card-detail">
+                        <!--<label class="control-label">Cell:</label>-->
+                        <p class="form-control-static">{{ user.phone || '-' }}</p>
+                    </div>
+                    <div class="card-detail">
+                        <!--<label class="control-label">Tags:</label>-->
+                        <p class="form-control-static">
+                            <span class="label label-primary" style="margin: 0 2px" ng-repeat="tag in user.tags track by $index">{{ tag }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--Add a back side to display more information on user-->
+            <div class="back">
+                <div class="wrapper">
+                    <div class="card-detail about">
+                        <label class="control-label">About:</label>
+                        <p class="form-control-static">{{ user.about | limitTo: 250 }}{{user.about.length > 250 ? '.' : ''}}</p>
+                    </div>
+                    <div class="card-detail address">
+                        <label class="control-label">Address:</label>
+                        <p class="form-control-static">{{ user.street || '-' }}, {{ user.city || '-' }} {{ user.state || '-' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

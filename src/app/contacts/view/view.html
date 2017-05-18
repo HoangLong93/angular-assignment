@@ -1,5 +1,7 @@
 <h2>{{ $ctrl.contact.firstName }} {{ $ctrl.contact.surName }}
   <div class="btn-group pull-right">
+    <!--Add button to go back to cards page-->
+    <button class="btn btn-success" ng-click="$ctrl.cards()">Back to cards display</button>
     <button class="btn btn-primary" ng-click="$ctrl.back()">Back to list</button>
     <button class="btn btn-default" ng-click="$ctrl.edit()">Edit contact</button>
   </div>

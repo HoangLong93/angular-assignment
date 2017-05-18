@@ -15,44 +15,44 @@
 
 <!--Cards-->
 <div class="row card-container">
-    <div class="card" ng-repeat="user in $ctrl.contacts | filter:search | filter:{isActive: 'true'}">
+    <div class="card" ng-repeat="contact in $ctrl.contacts | filter:search | filter:{isActive: 'true'}">
         <div class="flipper">
             <div class="front">
-                <a href="" ui-sref="app.contacts.view({ id: user.id })">
-                    <h1>{{user.firstName || '-' }} {{user.surName || '-' }}</h1>
+                <a href="" ui-sref="app.contacts.view({ id: contact.id })">
+                    <h1>{{contact.firstName || '-' }} {{contact.surName || '-' }}</h1>
                 </a>
                 <div class="row">
                     <div class="card-detail">
                         <!--<label class="control-label">Company:</label>-->
-                        <p class="form-control-static company">{{ user.company || '-' | uppercase }}</p>
+                        <p class="form-control-static company">{{ contact.company || '-' | uppercase }}</p>
                     </div>
                     <div class="card-detail">
                         <!--<label class="control-label">Mail:</label>-->
-                        <p class="form-control-static">{{ user.email || '-' }}</p>
+                        <p class="form-control-static">{{ contact.email || '-' }}</p>
                     </div>
                     <div class="card-detail">
                         <!--<label class="control-label">Cell:</label>-->
-                        <p class="form-control-static">{{ user.phone || '-' }}</p>
+                        <p class="form-control-static">{{ contact.phone || '-' }}</p>
                     </div>
                     <div class="card-detail tags">
                         <!--<label class="control-label">Tags:</label>-->
                         <p class="form-control-static">
-                            <span class="label label-primary" style="margin: 0 2px" ng-repeat="tag in user.tags track by $index">{{ tag }}</span>
-                            <span ng-hide="user.tags.length">-</span>
+                            <span class="label label-primary" style="margin: 0 2px" ng-repeat="tag in contact.tags track by $index">{{ tag }}</span>
+                            <span ng-hide="contact.tags.length">-</span>
                         </p>
                     </div>
                 </div>
             </div>
-            <!--Add a back side to display more information on user-->
+            <!--Add a back side to display more information on contact-->
             <div class="back">
                 <div class="wrapper">
                     <div class="card-detail about">
                         <label class="control-label">About:</label>
-                        <p class="form-control-static">{{ user.about || '-' | limitTo: 250 }}{{user.about.length > 250 ? '.' : ''}}</p>
+                        <p class="form-control-static">{{ contact.about || '-' | limitTo: 250 }}{{contact.about.length > 250 ? '.' : ''}}</p>
                     </div>
                     <div class="card-detail address">
                         <label class="control-label">Address:</label>
-                        <p class="form-control-static">{{ user.street || '-' }}, {{ user.city || '-' }} {{ user.state || '-' }}</p>
+                        <p class="form-control-static">{{ contact.street || '-' }}, {{ contact.city || '-' }} {{ contact.state || '-' }}</p>
                     </div>
                 </div>
             </div>

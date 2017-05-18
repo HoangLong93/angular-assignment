@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="card-detail">
                         <!--<label class="control-label">Company:</label>-->
-                        <p class="form-control-static company">{{ user.company | uppercase }}</p>
+                        <p class="form-control-static company">{{ user.company || '-' | uppercase }}</p>
                     </div>
                     <div class="card-detail">
                         <!--<label class="control-label">Mail:</label>-->
@@ -38,6 +38,7 @@
                         <!--<label class="control-label">Tags:</label>-->
                         <p class="form-control-static">
                             <span class="label label-primary" style="margin: 0 2px" ng-repeat="tag in user.tags track by $index">{{ tag }}</span>
+                            <span ng-hide="user.tags.length">-</span>
                         </p>
                     </div>
                 </div>
@@ -47,7 +48,7 @@
                 <div class="wrapper">
                     <div class="card-detail about">
                         <label class="control-label">About:</label>
-                        <p class="form-control-static">{{ user.about | limitTo: 250 }}{{user.about.length > 250 ? '.' : ''}}</p>
+                        <p class="form-control-static">{{ user.about || '-' | limitTo: 250 }}{{user.about.length > 250 ? '.' : ''}}</p>
                     </div>
                     <div class="card-detail address">
                         <label class="control-label">Address:</label>
